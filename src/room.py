@@ -12,4 +12,4 @@ class Room:
         self.w_to = False
 
     def __str__(self):
-        return f"{self.name}/n{self.description}"
+        return f"{self.name}\n{self.description}"
