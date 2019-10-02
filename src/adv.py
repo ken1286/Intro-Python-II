@@ -37,7 +37,7 @@ room['treasure'].s_to = room['narrow']
 #
 # Main
 #
-player = Player(room['outside'])
+player = Player('Hero', room['outside'])
 
 # Make a new player object that is currently in the 'outside' room.
 
@@ -53,6 +53,7 @@ player = Player(room['outside'])
 # If the user enters "q", quit the game.s
 
 exit_game = False
+print(f'Welcome, {player.name}! Enjoy your adventure.\n')
 
 while not exit_game:
 

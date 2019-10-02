@@ -3,7 +3,8 @@
 
 
 class Player:
-    def __init__(self, current_room):
+    def __init__(self, name, current_room):
+        self.name = name
         self.current_room = current_room
 
     def __str__(self):
@@ -19,4 +20,4 @@ class Player:
         elif direction.lower() == 'w' and self.current_room.w_to:
             self.current_room = room
         else:
-            print('No path in that direction.')
+            print('No path in that direction.\n')
