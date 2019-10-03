@@ -3,9 +3,10 @@
 
 
 class Player:
-    def __init__(self, name, current_room):
+    def __init__(self, name, current_room, inventory=[]):
         self.name = name
         self.current_room = current_room
+        self.inventory = inventory
 
     def __str__(self):
         return f"The player, located in {self.current_room}"
@@ -21,3 +22,10 @@ class Player:
             self.current_room = room
         else:
             print('No path in that direction.\n')
+
+    def get_item(self, item):
+        if item in self.current_room.items:
+            self.inventory.append(item)
+            self.current_room.remove_item(item)
+        else:
+            print('\nThat item does not exist!')

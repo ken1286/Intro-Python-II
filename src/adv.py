@@ -1,11 +1,15 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
+outside_items = [Item('sword', 'A holy relic'),
+                 Item('torch', 'A simple torch')]
+
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", outside_items),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east."""),
@@ -66,6 +70,19 @@ while not exit_game:
 
     if user_input == 'q':
         exit_game = True
+
+    # get first word and check 2nd word
+    elif user_input.split(' ', 1)[0] == 'get':
+        for item in player.current_room.items:
+            if user_input.split(' ', 1)[1] == item.name:
+                player.get_item(item)
+
+    elif user_input == 'i' or user_input == 'inventory':
+        print()
+        print(f"{player.name}'s inventory:")
+        for item in player.inventory:
+            print(item.name)
+        print()
 
     elif user_input == 'n':
         player.move(user_input, player.current_room.n_to)
