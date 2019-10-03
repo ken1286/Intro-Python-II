@@ -72,17 +72,21 @@ while not exit_game:
         exit_game = True
 
     # get first word and check 2nd word
-    elif user_input.split(' ', 1)[0] == 'get':
-        for item in player.current_room.items:
-            if user_input.split(' ', 1)[1] == item.name:
-                player.get_item(item)
+    if len(user_input.split(' ')) == 2:
+        verb = user_input.split(' ')[0]
+        obj = user_input.split(' ')[1]
+    else:
+        verb = False
+        obj = False
+
+    if verb and obj:
+        if verb == 'get':
+            for item in player.current_room.items:
+                if obj == item.name:
+                    player.get_item(item)
 
     elif user_input == 'i' or user_input == 'inventory':
-        print()
-        print(f"{player.name}'s inventory:")
-        for item in player.inventory:
-            print(item.name)
-        print()
+        player.check_inventory()
 
     elif user_input == 'n':
         player.move(user_input, player.current_room.n_to)
@@ -97,5 +101,6 @@ while not exit_game:
         player.move(user_input, player.current_room.w_to)
     else:
         print('Invalid input. Try again!\n')
+    print()
 
 print('Goodbye!')

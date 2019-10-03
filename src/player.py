@@ -29,3 +29,10 @@ class Player:
             self.current_room.remove_item(item)
         else:
             print('\nThat item does not exist!')
+
+    def check_inventory(self):
+        print()
+        print(f"{self.name}'s inventory:")
+        for item in self.inventory:
+            print(item.name)
+        print()
